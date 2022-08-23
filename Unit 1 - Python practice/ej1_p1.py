@@ -1,3 +1,4 @@
+import numpy as np 
 text='El cambio de movimiento es directamente proporcional a la fuerza motriz\
  impresa y ocurre según la línea recta a lo largo de la cual aquella fuerza\
  se imprime.'
@@ -27,5 +28,8 @@ for word in splitedText:
     if "e" in word:
         print(word)
 
+array=np.array([[1, 2], [3, 4]])
+print(array)
+print(type(array))
  
 

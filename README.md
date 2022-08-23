@@ -10,6 +10,10 @@ To use a virtual environment, you need to “activate” that environment with t
 
 `source venv/bin/activate`
 
-Install numpy packages
+Install packages
 
 `pip install numpy`
+
+`pip install matplotlib`
+
+`pip install scipy`
