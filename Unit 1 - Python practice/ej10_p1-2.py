@@ -1,4 +1,3 @@
-from email.errors import MisplacedEnvelopeHeaderDefect
 import numpy as np
 
 matA = np.loadtxt('data/matriz_A.dat',  skiprows=1)
