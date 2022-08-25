@@ -21,6 +21,10 @@ for number in x2:
 #print("y2 = ", y2)
 
 plt.plot(x1, y1)
+plt.plot(x2, y2)
+
+plt.title("Sine of the double angle")
 plt.xlabel("Angle")
 plt.ylabel("Sine of the angle")
 plt.show()
+
