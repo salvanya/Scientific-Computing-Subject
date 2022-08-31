@@ -49,7 +49,7 @@ def elementCountToPlot(uniqueElementCountedList):
 
     return np.array(x), np.array(y)
 
-x, y = elementCountToPlot( uniqueElementsCount(data, uniqueElements) )
+x, y = elementCountToPlot( uniqueElementsCount(data, uniqueElements(data)) )
 
 #print(f'x:{x}\n x length={len(x)} ')
 #print(f'y:{y}\n y length={len(y)} ')

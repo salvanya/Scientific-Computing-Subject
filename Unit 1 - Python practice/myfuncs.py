@@ -40,7 +40,7 @@ def uniqueElements(data):
 
 def uniqueElementsCount(dataList, uniqueElementList):
     
-    uniqueElementCountedList = {}
+    uniqueElementCountedDict = {}
     
     for uniqueElement in uniqueElementList:
         count = 0
@@ -49,6 +49,7 @@ def uniqueElementsCount(dataList, uniqueElementList):
             if element == uniqueElement:
                 count += 1
         
-        uniqueElementCountedList[uniqueElement] = count
+        uniqueElementCountedDict[uniqueElement] = count
 
-    return uniqueElementCountedList
+    return uniqueElementCountedDict
+

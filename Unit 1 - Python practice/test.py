@@ -1,10 +1,15 @@
 import numpy as np
 
-matrix = np.array([[1,2],[3,4]])
+numeros = np.array([0,1,2,3,4,5])
 
-row, col = matrix.shape
+c= numeros * 0.5
 
-for j in range(col):
-    for i in range(row):
-        print(matrix[i,j])
+b = np.array([1,3,5,7,9,11])
+
+d = numeros + b
+
+A = np.array([[1,2,3],[4,5,6]])
+
+print(A)
+print(f'ndim: {A.ndim} \nshape: {A.shape} \nsize: {A.size} \ndtype: {A.dtype} \nitemsize: {A.itemsize} \n ')
 
