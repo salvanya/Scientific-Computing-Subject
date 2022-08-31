@@ -16,9 +16,9 @@ def WriteArrayFile(dimension):
         vector = CreateRandomVector(dimension)
         lineVector = ""
         for element in vector:
-            
+            lineVector += str(element)
+            lineVector += ' '
         file.write()
 
-        
-
     file.close()
+    return
