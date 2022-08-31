@@ -15,8 +15,8 @@ def logExPlusOne(number, terms):
 
 def logExPlusOneRecursive(number, terms, start=0, currentTerm=0):
 
-    if currentTerm == (terms+1):
-        return 0
+    if currentTerm == (terms):
+        return start
     
     if not -1 < number < 1:
         print('Error! The number must be |x| < 1 ')
@@ -28,11 +28,11 @@ def logExPlusOneRecursive(number, terms, start=0, currentTerm=0):
 
     logSum += ( ( (-1)**(term) ) / (term+1) ) * (number**(term+1))        
 
+#    print(f'Recursion {currentTerm+1}, result {logSum}')
+
     currentTerm += 1
 
-    logSum += logExPlusOneRecursive(number, terms, logSum, currentTerm)
-
-#    print(f'Recursion {currentTerm}, result {logSum}')
+    logSum = logExPlusOneRecursive(number, terms, logSum, currentTerm)
 
     return logSum
 
