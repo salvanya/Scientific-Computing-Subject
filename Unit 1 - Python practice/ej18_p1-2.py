@@ -16,7 +16,7 @@ def GramSchmidt(vectorList, dimension):
 
     while len(orthogonalVectorList) < len(vectorList):
         for vector in vectorList:    
-            projections = 0
+            projections = zero
             
             for orthogonalVector in orthogonalVectorList:
                 projections += -( np.dot((np.dot(vector,orthogonalVector)) \
