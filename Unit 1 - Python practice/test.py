@@ -12,4 +12,3 @@ A = np.array([[1,2,3],[4,5,6]])
 
 print(A)
 print(f'ndim: {A.ndim} \nshape: {A.shape} \nsize: {A.size} \ndtype: {A.dtype} \nitemsize: {A.itemsize} \n ')
-
