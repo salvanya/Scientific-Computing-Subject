@@ -19,11 +19,25 @@ def GramSchmidt(vectorList, dimension):
             projections = zero
             
             for orthogonalVector in orthogonalVectorList:
-                projections += -( np.dot((np.dot(vector,orthogonalVector)) \
-                    / (np.dot(orthogonalVector,orthogonalVector)), orthogonalVector) )     
+                projections += (-1)* ( ( np.dot(vector,orthogonalVector) / np.dot(orthogonalVector,orthogonalVector)) * orthogonalVector)
+                
+                # print(f'u = {vector}\
+                #     \nv = {orthogonalVector}\
+                #     \n<u,v> = {np.dot(vector,orthogonalVector)}\
+                #     \n<u,u> = {np.dot(orthogonalVector,orthogonalVector)}\
+                #     \n<u,v>/<u,u> = {np.dot(vector,orthogonalVector) / np.dot(orthogonalVector,orthogonalVector)}\
+                #     \n<u,v>/<u,u>*v = {( ( np.dot(vector,orthogonalVector) / np.dot(orthogonalVector,orthogonalVector)) * orthogonalVector)}\
+                #     \nProjection for {orthogonalVector} = {projections}\n')
+                 
 
-            newOrthogonalVector = vector-projections
+#            print(f'Vector: {vector}')
+            
+#            print(f'Projection: {projections}')
 
+            newOrthogonalVector = vector + projections
+            
+#            print(f'Orthogonal vector: {newOrthogonalVector}')
+            
             if (newOrthogonalVector == zero).all():
                 print(f'These vectors does not form a basis for R{dimension}')
                 return 0
@@ -51,7 +65,11 @@ nDimension = int(input("Enter de vector dimension: "))
 
 vectorList = GenerateAndPrintVectorSet(nDimension)
 
-print(f'The orthogonal basis for the {nDimension}-dimensional space are')
+# nDimension = 2
+# vectorList = np.array([[1,2],[2,1]])
+# print(f'Vecors:\n {vectorList[0]}\n {vectorList[1]}\n')
+
+print(f'The orthogonal basis for the {nDimension}-dimensional space are: ')
 
 orthogonalVectorList = GramSchmidt(vectorList, nDimension)
 
