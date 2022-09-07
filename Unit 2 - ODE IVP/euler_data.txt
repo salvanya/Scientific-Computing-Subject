@@ -1,0 +1,6 @@
+Method "Euler"
+Order 1
+x_0 0 
+x_m 101
+h 1
+y_0 1 
