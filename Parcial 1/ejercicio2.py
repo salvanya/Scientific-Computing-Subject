@@ -19,44 +19,43 @@ def FilasMasCeros(datos):
         
         ceros_por_fila[fila] = cant_ceros
 
-    mas_ceros = max(ceros_por_fila.values())
+    mas_ceros = max(ceros_por_fila.values(),default=0)
 
     filas_mas_ceros = []
 
     for fila in ceros_por_fila.keys():
         if ceros_por_fila[fila] == mas_ceros:
             filas_mas_ceros.append(fila)
+    if len(filas_mas_ceros) == 0:
+        return [0]
     return filas_mas_ceros
 
 print(f'La/s fila/s con más ceros es/son {FilasMasCeros(datos)}')
+    
+
+def determinante(matriz, total=0):
+
+    indices = np.shape(matriz)
+     
+
+    if indices[0] == 2 and indices[1] == 2:
+        valor = matriz[0,0] * matriz[1,1] - matriz[1,0] * matriz[0,1]
+        return valor
+ 
+
+    fila = FilasMasCeros(matriz)[0]
+
+    for columna in range(indices[1]):
+        menor = np.delete(matriz, fila, 0 )
+        menor = np.delete(menor,columna,1)
         
+        signo = (-1)**(columna + fila) 
 
-def determ(matriz, det_ant=0):
-    if matriz == np.array([]):
-        return 0
-    fila_mas_ceros = FilasMasCeros(matriz)[0]
-    det = det_ant
+        sub_det = determinante(menor)
 
-    for columna in range(np.shape(matriz)[1]):
-        a = matriz[fila_mas_ceros, columna]
-        menor = np.delete(matriz, fila_mas_ceros, columna)
-        det += a * ((-1)^( fila_mas_ceros + columna)) * determ(menor, det)
+        total += signo * matriz[fila,columna] * sub_det 
+ 
+    return total
 
-    return det
-
-determinante = determ(datos)
-
-print(f'El determinante es {determinante}')
-
-
-
-    # determinante = 0
-    # menor = matriz
-    # while menor.shape() != (2, 2): 
-    #     for columna in range(menor.shape()[1]):
-    #         a = datos[fila_mas_ceros, columna]
-        
-    #         if a == 0:
-    #             continue
-        
-
+print(f'El determinante de la matriz con mi método {determinante(datos)}')
+print(f'El determinante de la matriz con numpy {np.linalg.det(datos)}')
