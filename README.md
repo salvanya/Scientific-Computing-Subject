@@ -21,3 +21,5 @@ Install packages
 `pip install matplotlib`
 
 `pip install scipy`
+
+`pip install seaborn`
