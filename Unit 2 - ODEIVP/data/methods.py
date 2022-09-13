@@ -1,61 +1,17 @@
-import numpy as np
+from data.function import f
+def euler(Y, x, h):
+    return Y + h * f(x,Y) 
 
-def euler(f, x0, x_end, h, y0):
-    x = np.linspace(x0, x_end, int(((x_end - x0)/h)))
-    euler_method = [x, [y0]]    
-    yi = y0
-    x = np.nditer(x, flags=['f_index'])
-    x.iternext()
+def midpoint(Y, x, h):
+    return Y + h * f( x+(h/2), Y+(h/2)*f(x, Y) ) 
 
-    for xi in x:
-        yip1 = yi + h * f(xi,yi)           
-        euler_method[1].append(yip1)
-        yi = yip1
+def heun(Y, x, h):
+    return Y + h * ( 0.5 * f(x,Y) + 0.5 * f(x+h, Y + h*f(x,Y)))
 
-    return euler_method
+def rk4(Y, x, h):
+    k1 = f(x, Y)
+    k2 = f(x + h / 2, Y + h * (0.5 * k1) )
+    k3 = f(x + h / 2, Y + h * (0.5 * k2) )
+    k4 = f(x + h, Y + h * (1 * k3) )
+    return Y + h/6 * (k1 + 2*k2 + 2*k3 + k4)
 
-def midpoint(f, x0, x_end, h, y0):
-    x = np.linspace(x0, x_end, int(((x_end - x0)/h)))
-    midpoint_method = [x, [y0]]    
-    yi = y0
-    x = np.nditer(x, flags=['f_index'])
-    x.iternext()
-
-    for xi in x:
-        yip1 = yi + h * f( xi+(h/2), yi+(h/2)*f(xi, yi) )           
-        midpoint_method[1].append(yip1)
-        yi = yip1
-
-    return midpoint_method
-
-def heun(f, x0, x_end, h, y0):
-    x = np.linspace(x0, x_end, int(((x_end - x0)/h)))
-    heun_method = [x, [y0]]    
-    yi = y0
-    x = np.nditer(x, flags=['f_index'])
-    x.iternext()
-
-    for xi in x:
-        yip1 = yi + h * ( 0.5 * f(xi,yi) + 0.5 * f(xi+h, yi + h*f(xi,yi)))      
-        heun_method[1].append(yip1)
-        yi = yip1
-
-    return heun_method
-
-def rk4(f, x0, x_end, h, y0):
-    x = np.linspace(x0, x_end, int(((x_end - x0)/h)))
-    rk4_method = [x, [y0]]    
-    yi = y0
-    x = np.nditer(x, flags=['f_index'])
-    x.iternext()
-
-    for xi in x:
-        k1 = f(xi, yi)
-        k2 = f(xi + h / 2, yi + h * (0.5 * k1) )
-        k3 = f(xi + h / 2, yi + h * (0.5 * k2) )
-        k4 = f(xi + h, yi + h * (1 * k3) )
-        yip1 = yi + h/6 * (k1 + 2*k2 + 2*k3 + k4)      
-        rk4_method[1].append(yip1)
-        yi = yip1
-
-    return rk4_method
