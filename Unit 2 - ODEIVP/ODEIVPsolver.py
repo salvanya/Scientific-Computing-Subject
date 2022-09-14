@@ -29,55 +29,50 @@ for i in range( number_of_methods ):
 
 methods_to_write = ''
 
-x = np.linspace(x_0, x_end, int(((x_end - x_0)/h)))    
 Y_i = initial_conditions[0] 
 data = {}
-x = np.nditer(x, flags=['f_index'])
-x.iternext()
-x_1 = x.iternext()
+data['x'] = [x_0]
+x = x_0
+
 
 for method in methods:
     data[method] = [initial_conditions[0]]
     
     if method == 'euler':
-        data[method].append(euler(initial_conditions[0], x_1, h))
+        # data[method].append(euler(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Euler '
     
     elif method == 'midpoint':
-        data[method].append(midpoint(initial_conditions[0], x_1, h))
+        # data[method].append(midpoint(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Midpoint '    
 
     elif method == 'heun':
-        data[method].append(heun(initial_conditions[0], x_1, h))
+        # data[method].append(heun(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Heun '    
     
-    
     elif method == 'rk4':
-        data[method].append(rk4(initial_conditions[0], x_1, h))
+        # data[method].append(rk4(initial_conditions[0], x_0+h, h))
         methods_to_write += 'RK4 '    
 
 
-    globals()[f'y_{method}'] = data[method][1]
-
-
-for x_i in x:
+while x <= x_end:
+    index = data['x'].index(x)
+    
     for method in methods:
         if method == 'euler':
-            y_euler = euler(y_euler, x_i, h)
-            data[method].append(y_euler)
+            data[method].append(euler(data['euler'][index], x, h))
                             
         if method == 'midpoint':
-            y_midpoint = midpoint(y_midpoint, x_i, h)
-            data[method].append(y_midpoint)
+            data[method].append(midpoint(data['midpoint'][index], x, h))
 
         if method == 'heun':
-            y_heun = heun(y_heun, x_i, h)
-            data[method].append(y_heun)
+            data[method].append(heun(data['heun'][index], x, h))
 
         if method == 'rk4':
-            y_rk4 = rk4(y_rk4, x_i, h)
-            data[method].append(y_rk4)
-        
+            data[method].append(rk4(data['rk4'][index], x, h))
+
+    x += h
+    data['x'].append(x)
 
 file = open('data/data_to_plot.txt', 'w')
 file.write(methods_to_write + '\n')
@@ -85,15 +80,15 @@ file.close
 
 file = open('data/data_to_plot.txt', 'a')
 
-data_length = np.linspace(x_0, x_end, int(((x_end - x_0)/h)))
 
-for index, x_i in enumerate(data_length):
-    row = str(x_i)
+for index, x in enumerate(data['x']):
+    row = str(x)
     
     for method in methods:
         row += " " + str(data[method][index]) 
 
     row += "\n"
     file.write(row)
+
 
 file.close() 

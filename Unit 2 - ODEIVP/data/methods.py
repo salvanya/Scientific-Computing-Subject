@@ -1,9 +1,10 @@
 from data.function import f
 def euler(Y, x, h):
-    return Y + h * f(x,Y) 
+    return Y + h * f(x,Y)
+
 
 def midpoint(Y, x, h):
-    return Y + h * f( x+(h/2), Y+(h/2)*f(x, Y) ) 
+    return Y + h * f( x+(h/2), Y+(h/2)*f(x, Y) )
 
 def heun(Y, x, h):
     return Y + h * ( 0.5 * f(x,Y) + 0.5 * f(x+h, Y + h*f(x,Y)))
