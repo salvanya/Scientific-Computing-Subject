@@ -1,37 +1,47 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from function import f
+
+
+def f(x, y=0):
+    func = np.zeros(2)
+    
+    func[0] = y[1]
+    func[1] = x*(y[0]**2)
+    
+    return func
 
 x_0 = 0
-x_end = 4
+x_end = 100
 h = 0.1
-y_0 = 1
+y_0 = np.zeros(2)
+y_0[0] = 1
+y_0[1] = 0
+
+print(y_0)
 
 def euler(Y, x, h):
     return Y + h * f(x,Y) 
 
 x = np.linspace(x_0, x_end, int(((x_end - x_0)/h)))
-method_data = [x, [y_0]]    
+method_data = [ x, [y_0[0]], [y_0[1]] ]    
 Y_i = y_0
 x = np.nditer(x, flags=['f_index'])
 x.iternext()
 
+print (method_data)
+
 for x_i in x:
     Y_i = euler(Y_i, x_i, h)
-    method_data[1].append(Y_i)
+    method_data[1].append(Y_i[0])
+    method_data[2].append(Y_i[1])
+    
+print(method_data)
 
-def compare_function(x,y=1):
-    func = -0.5*x**4 + 4*x**3 - 10*x**2 + 8.5*x + 1
-    return func
 
-function_to_compare = [method_data[0], []]
+for i in range( len(method_data) - 1 ):
+    plt.plot(method_data[0],method_data[i+1], label = f'y{i+1}')
 
-for x in method_data[0]:
-    function_to_compare[1].append(compare_function(x))
-
-plt.plot(function_to_compare[0],function_to_compare[1], label = 'Analitic Function')
-plt.plot(method_data[0],method_data[1], label = 'Predicted Function')
 sns.set()
 
 

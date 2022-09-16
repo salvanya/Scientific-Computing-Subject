@@ -1,4 +1,5 @@
 from data.function import f
+
 def euler(Y, x, h):
     return Y + h * f(x,Y)
 

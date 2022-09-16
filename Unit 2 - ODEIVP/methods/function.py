@@ -1,3 +1,16 @@
+import numpy as np
+
 def f(x, y=0):
-    func = - 2*x**3 + 12*x**2 - 20*x + 8.5
+    func = np.zeros(2)
+    
+    func[0] = y[1]
+    func[1] = x*(y[0]**2)
+    
     return func
+
+# y = np.zeros(2)
+
+# y[0] = 2
+# y[1] = 3
+
+# print(f(1,y))

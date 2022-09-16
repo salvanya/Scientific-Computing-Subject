@@ -3,8 +3,8 @@
 4 # x_end: end x0
 1 # order of the ODE
 1 # y'(x0): 1st order derivative initial condition   
-4 # number of methods
-euler# Euler method
-midpoint# midpoint method
-heun# Heun method
+1 # number of methods
+#euler# Euler method
+#midpoint# midpoint method
+#heun# Heun method
 rk4# Runge-Kutta method
