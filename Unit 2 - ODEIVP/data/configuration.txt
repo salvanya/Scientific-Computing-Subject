@@ -1,10 +1,11 @@
 0.1 # h: Step
 0 # x_0: start x
-4 # x_end: end x0
-1 # order of the ODE
-1 # y'(x0): 1st order derivative initial condition   
+10 # x_end: end x0
+2 # order of the ODE
+1 # y(x0) : 1st order function initial condition
+0 # y'(x0): 2nd order derivative initial condition   
 1 # number of methods
 #euler# Euler method
 #midpoint# midpoint method
 #heun# Heun method
-rk4# Runge-Kutta method
+rk4# Runge-Kutta method 

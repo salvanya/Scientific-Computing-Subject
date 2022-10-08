@@ -1,6 +1,8 @@
-string = '1 2 3 4 5'
+lista = [1,2,3,4,5]
 
-list = list(string)
+dicc= dict.fromkeys(lista)
 
-print(f'string: {string}\n\
-    list: {list}')
+conj = set(dicc.keys())
+
+print (conj)
+

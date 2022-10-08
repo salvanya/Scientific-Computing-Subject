@@ -34,48 +34,43 @@ data = {}
 data['x'] = [x_0]
 x = x_0
 
-
 for method in methods:
     data[method] = [initial_conditions]
     
     if method == 'euler':
-        # data[method].append(euler(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Euler '
     
     elif method == 'midpoint':
-        # data[method].append(midpoint(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Midpoint '    
 
     elif method == 'heun':
-        # data[method].append(heun(initial_conditions[0], x_0+h, h))
         methods_to_write += 'Heun '    
     
     elif method == 'rk4':
-        # data[method].append(rk4(initial_conditions[0], x_0+h, h))
         methods_to_write += 'RK4 '    
 
-
 while x <= x_end:
+
     index = data['x'].index(x)
-    
+
     for method in methods:
         if method == 'euler':
-            data[method].append(euler(data['euler'][index], x, h))
+            data[method].append(euler(x, data['euler'][index], h))
                             
         if method == 'midpoint':
-            data[method].append(midpoint(data['midpoint'][index], x, h))
+            data[method].append(midpoint(x, data['midpoint'][index], h))
 
         if method == 'heun':
-            data[method].append(heun(data['heun'][index], x, h))
+            data[method].append(heun(x, data['heun'][index], h))
 
         if method == 'rk4':
-            data[method].append(rk4(data['rk4'][index], x, h))
+            data[method].append(rk4(x, data['rk4'][index], h))
 
     x += h
     data['x'].append(x)
-
+    
 file = open('data/data_to_plot.txt', 'w')
-file.write(methods_to_write + '\n')
+file.write(methods_to_write + '\n' + str(order) + '\n')
 file.close
 
 file = open('data/data_to_plot.txt', 'a')
@@ -85,10 +80,12 @@ for index, x in enumerate(data['x']):
     row = str(x)
     
     for method in methods:
-        row += " " + str(data[method][index]) 
+        for i in range(order):
+            row += " " + str(data[method][index][i]) 
 
     row += "\n"
     file.write(row)
 
 
 file.close() 
+#print(data)
