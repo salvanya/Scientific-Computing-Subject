@@ -11,12 +11,14 @@ def elim_gauss_jordan(matrix):
     for i in range(dim):
         print(f'i = {i}')
 
-        if (matrix[i] == np.zeros(5)).all():
+#        if (matrix[i] == np.zeros(5)).all():
+        if matrix[i] == np.zeros(5):
             print('This system is Indeterminated')
             return
         incompatible = np.zeros(5)
         incompatible[4] = matrix[i,dim]
-        if (matrix[i] == incompatible).all():
+        # if (matrix[i] == incompatible).all():
+        if matrix[i] == incompatible:
             print('This system is Incompatible')
             return 
 
@@ -38,15 +40,16 @@ def elim_gauss_jordan(matrix):
 
         matrix[i,:] = matrix[i,:] / matrix[i,col] 
 
-        print(matrix)
-        print(f'columna = {col}')
+        #print(matrix)
+        #print(f'columna = {col}')
         col += 1
 
-    print(matrix)
+    #print(matrix)
 
     solution = matrix[:, dim]
 
     return solution
 
-
-print(f'The solution vector is: {elim_gauss_jordan(matrix)}')
+sol = elim_gauss_jordan(matrix)
+print(f'The solution vector is: {sol}')
+print(f'El tipo de la solución es: {type(sol)}')

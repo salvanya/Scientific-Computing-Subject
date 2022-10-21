@@ -23,3 +23,5 @@ Install packages
 `pip install scipy`
 
 `pip install seaborn`
+
+`pip install pprintpp`
